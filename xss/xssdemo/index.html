@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>XSS Entry Points – Index</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            margin-top: 30px;
+        }
+        ul {
+            margin-left: 20px;
+        }
+        a {
+            text-decoration: none;
+            color: #0073e6;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>HTTP Request</h1>
+
+    <h2>Request Line</h2>
+    <ul>
+        <li><a href="entrypoints/querystring.php">Query string</a></li>
+        <li><a href="entrypoints/urlpath.php">Path Info</a></li>
+        <li><a href="entrypoints/echo_uri.php">Echoing URI</a></li>
+    </ul>
+
+    <h2>Headers</h2>
+    <ul>
+        <li><a href="entrypoints/useragent_header.php">User-Agent Header</a></li>
+        <li><a href="entrypoints/cookie_header.php">Cookie Header</a></li>
+        <li><a href="entrypoints/referer_header.php">Referer Header</a></li>
+    </ul>
+
+    <h2>Body</h2>
+    <ul>
+        <li><a href="entrypoints/post.php">Form Fields (Text Inputs)</a></li>
+        <li><a href="entrypoints/upload_file.php">Files</a></li>
+    </ul>
+
+    <h1>Third-party Content</h1>
+    <ul>
+        <li><a href="entrypoints/feed.php">feed.php</a></li>
+    </ul>
+
+</body>
+</html>
+

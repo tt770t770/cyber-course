@@ -1,0 +1,143 @@
+{
+    "source": "CoolFeeds Inc.",
+    "generated_at": "2025-10-28T12:00:00Z",
+    "items": [
+      {
+        "id": "a1",
+        "type": "article",
+        "title": "Deep Dive: Neon Cities 🌃",
+        "summary": "A stroll through neon-lit alleys, synth playlists, and night-market eats.",
+        "content_html": "<p>Explore the sensory overload of neon cityscapes — food stalls, late-night vinyl stores, and alleyway galleries.</p>",
+        "image": "http://localhost:8002/media/neon-cities.jpg",
+        "url": "http://coolfeeds.example/article/neon-cities",
+        "author": "Maya R.",
+        "published": "2025-09-12T18:30:00Z"
+      },
+      {
+        "id": "a2",
+        "type": "gallery",
+        "title": "Micro-Wonders: Macro Photography Set",
+        "summary": "Tiny universes revealed through macro lenses.",
+        "images": [
+          "http://localhost:8002/media/macro1.jpg",
+          "http://localhost:8002/media/macro2.jpg",
+          "http://localhost:8002/media/macro3.jpg"
+        ],
+        "content_html": "<div class='gallery'>[images]</div>",
+        "url": "http://coolfeeds.example/gallery/micro-wonders",
+        "author": "I. Chen",
+        "published": "2025-10-10T09:00:00Z"
+      },
+      {
+        "id": "a3",
+        "type": "event",
+        "title": "Underground Arcade Night 🕹️",
+        "summary": "Retro cabinets, limited-run zines, and synthwave DJs. Free entry before 10pm.",
+        "content_html": "<p>Doors 8pm. RSVP required.</p>",
+        "location": "Warehouse 7, Dockside",
+        "start": "2025-11-05T20:00:00Z",
+        "end": "2025-11-06T01:00:00Z",
+        "url": "http://coolfeeds.example/events/arcade-night",
+        "author": "Events Team",
+        "published": "2025-10-01T12:00:00Z"
+      },
+      {
+        "id": "a4",
+        "type": "ad",
+        "title": "Sponsored: Snack-O-Rama — Limited Flavor Drop",
+        "summary": "Try the limited 'Cosmic BBQ' chips. Promo code COOL10.",
+        "content_html": "<div class='ad'>Get 10% off — use <strong>COOL10</strong></div>",
+        "image": "http://localhost:8002/media/snackorama.jpg",
+        "url": "http://sponsor.example/cosmic-bbq",
+        "sponsored": true,
+        "published": "2025-10-20T00:00:00Z"
+      },
+      {
+        "id": "a5",
+        "type": "widget",
+        "title": "Weather Peek",
+        "summary": "Quick weather widget for the city.",
+        "content_html": "<div class='weather'>Sunny, 24°C — wind 6 km/h</div>",
+        "url": "http://widget.example/weather?loc=ny",
+        "published": "2025-10-28T06:00:00Z"
+      },
+      {
+        "id": "a6",
+        "type": "social",
+        "title": "Hot Take: AI-generated recipes",
+        "summary": "This pancake recipe was written by an algorithm — delicious and slightly suspicious.",
+        "content_html": "<blockquote>\"Use 3 eggs, 1 cup oat milk...\" — @chefbot</blockquote>",
+        "url": "http://social.example/post/chefbot123",
+        "author": "chefbot",
+        "published": "2025-10-25T14:22:00Z"
+      },
+      {
+        "id": "a7",
+        "type": "interactive",
+        "title": "Mini Quiz: Which Synth Are You?",
+        "summary": "Quick 3-question quiz with animated results.",
+        "content_html": "<div class='quiz'>Question 1... (interactive)</div>",
+        "url": "http://coolfeeds.example/quizzes/synth-you",
+        "published": "2025-10-15T10:00:00Z"
+      },
+      {
+        "id": "a8",
+        "type": "code-snippet",
+        "title": "Hacky one-liners",
+        "summary": "Fun one-liners for your dev toolkit.",
+        "content_html": "<pre><code>curl -s https://api.example/thing | jq '.data|length'</code></pre>",
+        "url": "http://coolfeeds.example/code/one-liners",
+        "author": "devsquad",
+        "published": "2025-09-30T08:00:00Z"
+      },
+      {
+        "id": "a9",
+        "type": "embed",
+        "title": "Soundtrack: Night Drive (preview)",
+        "summary": "30s preview clip from upcoming album.",
+        "content_html": "<iframe src='http://localhost:8002/media/preview-player.html' width='300' height='80' frameborder='0'></iframe>",
+        "url": "http://coolfeeds.example/music/night-drive",
+        "author": "Synth Collective",
+        "published": "2025-10-02T11:00:00Z"
+      },
+      {
+        "id": "a10",
+        "type": "malicious-sample",
+        "title": "User-submitted: weird title",
+        "summary": "Demonstration marker — pretend this is attacker-controlled HTML.",
+        "content_html": "User content: <<MALICIOUS>>",
+        "note": "The <<MALICIOUS>> marker stands in for arbitrary attacker HTML. DO NOT render raw innerHTML without sanitizing.",
+        "url": "http://coolfeeds.example/user/unknown",
+        "published": "2025-10-28T11:59:00Z"
+      },
+      {
+        "id": "a11",
+        "type": "listicle",
+        "title": "Top 7 Midnight Snacks (with recipes) 🌙",
+        "summary": "Sweet, salty, crunchy, and fast.",
+        "content_html": "<ol><li>Midnight Ramen</li><li>Peanut butter toast</li><li>Grilled cheese bites</li></ol>",
+        "url": "http://coolfeeds.example/food/midnight-snacks",
+        "author": "L. Park",
+        "published": "2025-10-22T19:00:00Z"
+      },
+      {
+        "id": "a12",
+        "type": "announcement",
+        "title": "Site Notice: Scheduled maintenance",
+        "summary": "We will be rolling out improvements to our widget API.",
+        "content_html": "<p>Maintenance window: 2025-11-01 02:00–03:00 UTC</p>",
+        "url": "http://coolfeeds.example/notice/maintenance",
+        "published": "2025-10-27T09:00:00Z"
+      },
+      {
+        "id": "a13",
+        "type": "challenge",
+        "title": "Photo scavenger hunt 🕵️",
+        "summary": "Find these 8 tiny objects in the city and win a sticker pack.",
+        "content_html": "<ul><li>Neon keychain</li><li>Blue matchbox</li><li>Tiny postcard</li></ul>",
+        "url": "http://coolfeeds.example/challenges/scavenger",
+        "published": "2025-10-05T07:00:00Z"
+      }
+    ]
+  }
+  

