@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>DOM XSS Demo – location.search / hash / pathname (UNSAFE)</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 900px; margin: 24px auto; padding: 0 12px; }
+    code { background: #f3f3f3; padding: 2px 6px; border-radius: 6px; }
+    .box { border: 1px solid #ddd; border-radius: 10px; padding: 12px; margin: 12px 0; }
+    .out { padding: 10px; background: #fff7d6; border-radius: 10px; min-height: 2.5em; }
+  </style>
+</head>
+<body>
+  <h1>DOM-based XSS entry points: <code>location.search</code>, <code>location.hash</code>, <code>location.pathname</code></h1>
+  <p>This page is intentionally <b>vulnerable</b> for demonstration. It takes data from the URL and writes it to the DOM using <code>innerHTML</code>.</p>
+
+  <div class="box">
+    <h2>1) Entry point: <code>location.search</code> (query string)</h2>
+    <p>Try: <code>?msg=&lt;img src=x onerror=alert(1)&gt;</code></p>
+    <div id="outSearch" class="out">(output goes here)</div>
+  </div>
+
+  <div class="box">
+    <h2>2) Entry point: <code>location.hash</code> (fragment)</h2>
+    <p>Try: <code>#&lt;img src=x onerror=alert(1)&gt;</code></p>
+    <div id="outHash" class="out">(output goes here)</div>
+  </div>
+
+  <div class="box">
+    <h2>3) Entry point: <code>location.pathname</code> (path)</h2>
+    <p>
+      This demo reads the last path segment. Example idea (depends on how you serve files):
+      <code>/demo/%3Cimg%20src%3Dx%20onerror%3Dalert(1)%3E</code>
+    </p>
+    <div id="outPath" class="out">(output goes here)</div>
+  </div>
+
+  <hr>
+  <p><b>Note:</b> For pathname-based tests, you usually need a local server / router that maps unknown paths to this file.</p>
+
+  <script>
+    // --- Helpers ---
+    function getQueryParam(name) {
+      const params = new URLSearchParams(location.search);
+      // URLSearchParams decodes percent-encoding, but keep a defensive try/catch anyway
+      return params.get(name) ?? "";
+    }
+
+    function getHashValue() {
+      // Remove leading '#'
+      const raw = location.hash.startsWith("#") ? location.hash.slice(1) : location.hash;
+      try { return decodeURIComponent(raw); } catch { return raw; }
+    }
+
+    function getLastPathSegment() {
+      // e.g. /a/b/c  -> "c"
+      const parts = location.pathname.split("/").filter(Boolean);
+      const raw = parts.length ? parts[parts.length - 1] : "";
+      try { return decodeURIComponent(raw); } catch { return raw; }
+    }
+
+    // --- Vulnerable sinks (innerHTML) ---
+    function render() {
+      const msg = getQueryParam("msg");     // location.search
+      const frag = getHashValue();          // location.hash
+      const path = getLastPathSegment();    // location.pathname
+
+      // ❌ Intentionally vulnerable: HTML injection via innerHTML
+      document.getElementById("outSearch").innerHTML =
+        "From <code>location.search</code> msg = " + msg;
+
+      document.getElementById("outHash").innerHTML =
+        "From <code>location.hash</code> = " + frag;
+
+      document.getElementById("outPath").innerHTML =
+        "From <code>location.pathname</code> last segment = " + path;
+    }
+
+    // Render on load and when hash changes (so fragment entry point updates live)
+    render();
+    window.addEventListener("hashchange", render);
+  </script>
+</body>
+</html>

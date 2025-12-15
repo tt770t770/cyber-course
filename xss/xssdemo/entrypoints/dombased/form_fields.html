@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DOM-Based XSS Demo – Unsafe innerHTML</title>
+</head>
+<body>
+
+  <h1>DOM-Based XSS Demonstration</h1>
+
+  <label>
+    Name:
+    <input type="text" id="name">
+  </label>
+  <br><br>
+
+  <label>
+    Eye color:
+    <select id="eyes">
+      <option value="blue">Blue</option>
+      <option value="green">Green</option>
+      <option value="brown">Brown</option>
+    </select>
+  </label>
+  <br><br>
+
+  <label>
+    Do you like movies?
+    <input type="checkbox" id="movies">
+  </label>
+  <br><br>
+
+  <label>
+    Favorite sentence:
+    <br>
+    <textarea id="sentence" rows="4" cols="40"></textarea>
+  </label>
+  <br><br>
+
+  <button onclick="updateOutput()">Submit</button>
+
+  <hr>
+
+  <h2>Output</h2>
+  <div id="output"></div>
+
+  <script>
+    function updateOutput() {
+      const name = document.getElementById("name").value;
+      const eyes = document.getElementById("eyes").value;
+      const likesMovies = document.getElementById("movies").checked ? "like" : "dislike";
+      const sentence = document.getElementById("sentence").value;
+
+      // ❌ Vulnerable DOM-based XSS sink
+      document.getElementById("output").innerHTML =
+        "Hello " + name + ",<br>" +
+        "Your eye color is " + eyes + ".<br>" +
+        "You " + likesMovies + " movies.<br>" +
+        "Your favorite sentence is: " + sentence;
+    }
+  </script>
+
+</body>
+</html>

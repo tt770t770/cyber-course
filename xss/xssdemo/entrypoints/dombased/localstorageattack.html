@@ -3,7 +3,7 @@
   <script>
     // simulate an attacker-controlled page on same origin (localhost) that sets storage
     localStorage.setItem('name', 'AAA<img src="aaa.jpg"  onerror=alert(1) />BBB');
-    location.href = 'localstorage.php';
+    location.href = 'localstorage.html';
   </script>
   <p>Redirecting to demo...</p>
 </body></html>
